@@ -34,36 +34,30 @@
     <div class="section-heading">
       <span>Featured</span>
       <h2>Koleksi Pilihan</h2>
-      <p>Preview produk yang nanti akan tersambung dengan database katalog.</p>
+      <p>Produk terbaru dari katalog N.A.Y.L.A.</p>
     </div>
 
     <div class="product-grid">
+      @forelse ($featuredProducts as $product)
       <div class="product-card">
+        @if ($product->image)
+        <img src="{{ asset('storage/' . $product->image) }}" class="product-photo" alt="{{ $product->name }}">
+        @else
         <div class="product-image soft-cream"></div>
-        <div class="product-info">
-          <h3>White Dress Series</h3>
-          <p>Busana putih elegan untuk acara spesial.</p>
-          <strong>Rp 350.000</strong>
-        </div>
-      </div>
+        @endif
 
-      <div class="product-card">
-        <div class="product-image soft-brown"></div>
         <div class="product-info">
-          <h3>Brown Modest Set</h3>
-          <p>Setelan kalem dengan warna earth tone.</p>
-          <strong>Rp 275.000</strong>
+          <h3>{{ $product->name }}</h3>
+          <p>{{ Str::limit($product->description, 70) ?: 'Koleksi busana elegan N.A.Y.L.A.' }}</p>
+          <strong>{{ $product->formattedPrice() }}</strong>
         </div>
       </div>
-
-      <div class="product-card">
-        <div class="product-image soft-blue"></div>
-        <div class="product-info">
-          <h3>Soft Blue Dress</h3>
-          <p>Tampilan anggun dengan warna lembut.</p>
-          <strong>Rp 320.000</strong>
-        </div>
+      @empty
+      <div class="empty-store">
+        <h3>Belum ada produk.</h3>
+        <p>Produk akan tampil setelah admin menambahkan katalog.</p>
       </div>
+      @endforelse
     </div>
   </div>
 </section>

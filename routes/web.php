@@ -1,35 +1,28 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('store.home');
-})->name('home');
-
-Route::get('/koleksi', function () {
-    return view('store.collection');
-})->name('collection');
-
-Route::get('/tentang', function () {
-    return view('store.about');
-})->name('about');
-
-Route::get('/kontak', function () {
-    return view('store.contact');
-})->name('contact');
+Route::get('/', [StoreController::class, 'home'])->name('home');
+Route::get('/koleksi', [StoreController::class, 'collection'])->name('collection');
+Route::get('/tentang', [StoreController::class, 'about'])->name('about');
+Route::get('/kontak', [StoreController::class, 'contact'])->name('contact');
 
 Route::get('/dashboard', function () {
     if (auth()->user()->role === 'admin') {
-        return view('admin.dashboard');
+        return redirect()->route('admin.dashboard');
     }
 
     return view('customer.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
 });
