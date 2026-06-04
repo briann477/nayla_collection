@@ -14,12 +14,12 @@
         </div>
 
         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <p class="text-sm text-gray-500">Pesanan</p>
+          <p class="text-sm text-gray-500">Kategori</p>
           <h3 class="text-3xl font-bold text-gray-800 mt-2">0</h3>
         </div>
 
         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <p class="text-sm text-gray-500">Pembayaran</p>
+          <p class="text-sm text-gray-500">Pesanan</p>
           <h3 class="text-3xl font-bold text-gray-800 mt-2">0</h3>
         </div>
 
@@ -36,10 +36,10 @@
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
-          <a href="#" class="p-4 rounded-lg border border-gray-200 hover:bg-gray-50 transition">
+          <a href="{{ route('admin.categories.index') }}" class="p-4 rounded-lg border border-gray-200 hover:bg-gray-50 transition">
             Kelola Kategori
           </a>
-          <a href="#" class="p-4 rounded-lg border border-gray-200 hover:bg-gray-50 transition">
+          <a href="{{ route('admin.products.index') }}" class="p-4 rounded-lg border border-gray-200 hover:bg-gray-50 transition">
             Kelola Produk
           </a>
           <a href="#" class="p-4 rounded-lg border border-gray-200 hover:bg-gray-50 transition">
