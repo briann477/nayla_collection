@@ -34,7 +34,7 @@
           <h3>{{ $product->name }}</h3>
           <p>{{ Str::limit($product->description, 80) ?: 'Koleksi busana elegan N.A.Y.L.A.' }}</p>
           <strong>{{ $product->formattedPrice() }}</strong>
-          <a href="#" class="product-link">Detail Produk</a>
+          <a href="{{ route('product.detail', $product->slug) }}" class="product-link">Detail Produk</a>
         </div>
       </div>
       @empty

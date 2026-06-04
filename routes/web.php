@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [StoreController::class, 'home'])->name('home');
 Route::get('/koleksi', [StoreController::class, 'collection'])->name('collection');
+Route::get('/koleksi/{slug}', [StoreController::class, 'productDetail'])->name('product.detail');
 Route::get('/tentang', [StoreController::class, 'about'])->name('about');
 Route::get('/kontak', [StoreController::class, 'contact'])->name('contact');
 

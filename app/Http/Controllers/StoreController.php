@@ -33,6 +33,24 @@ class StoreController extends Controller
         return view('store.collection', compact('products', 'categories'));
     }
 
+    public function productDetail(string $slug): View
+    {
+        $product = Product::with('category')
+            ->where('slug', $slug)
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        $relatedProducts = Product::with('category')
+            ->where('is_active', true)
+            ->where('id', '!=', $product->id)
+            ->where('category_id', $product->category_id)
+            ->latest()
+            ->take(3)
+            ->get();
+
+        return view('store.product-detail', compact('product', 'relatedProducts'));
+    }
+
     public function about(): View
     {
         return view('store.about');

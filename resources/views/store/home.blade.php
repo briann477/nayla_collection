@@ -40,16 +40,23 @@
     <div class="product-grid">
       @forelse ($featuredProducts as $product)
       <div class="product-card">
-        @if ($product->image)
-        <img src="{{ asset('storage/' . $product->image) }}" class="product-photo" alt="{{ $product->name }}">
+        @if ($product->image && \Illuminate\Support\Facades\Storage::disk('public')->exists($product->image))
+        <img
+          src="{{ asset('storage/' . $product->image) }}"
+          class="product-photo"
+          alt="{{ $product->name }}">
         @else
-        <div class="product-image soft-cream"></div>
+        <div class="product-image soft-cream product-placeholder">
+          <span>N.A.Y.L.A</span>
+        </div>
         @endif
 
         <div class="product-info">
+          <small>{{ $product->category->name ?? 'Produk' }}</small>
           <h3>{{ $product->name }}</h3>
           <p>{{ Str::limit($product->description, 70) ?: 'Koleksi busana elegan N.A.Y.L.A.' }}</p>
           <strong>{{ $product->formattedPrice() }}</strong>
+          <a href="{{ route('product.detail', $product->slug) }}" class="product-link">Detail Produk</a>
         </div>
       </div>
       @empty
