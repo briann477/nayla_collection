@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/keranjang/{product}', [CartController::class, 'store'])->name('cart.store');
     Route::put('/keranjang/{cart}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/keranjang/{cart}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+    Route::get('/checkout/success/{order}', [CheckoutController::class, 'success'])->name('checkout.success');
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {

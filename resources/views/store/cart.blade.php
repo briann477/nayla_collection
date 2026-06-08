@@ -101,7 +101,7 @@
         </div>
 
         @if ($cartItems->count() > 0)
-        <a href="#" class="btn-primary-store summary-btn">
+        <a href="{{ route('checkout.index') }}" class="btn-primary-store summary-btn">
           Lanjut Checkout
         </a>
         @else
