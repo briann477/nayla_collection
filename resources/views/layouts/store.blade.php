@@ -29,10 +29,21 @@
         <a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}">Tentang</a>
         <a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">Kontak</a>
 
-        @auth
-        <a href="{{ route('dashboard') }}" class="nav-pill">Dashboard</a>
-        @else
+        @guest
         <a href="{{ route('login') }}" class="nav-pill">Login</a>
+        @endguest
+
+        @auth
+        @if (auth()->user()->role === 'admin')
+        <a href="{{ route('admin.dashboard') }}" class="nav-pill">Admin</a>
+        @else
+        <form action="{{ route('logout') }}" method="POST" class="nav-logout-form">
+          @csrf
+          <button type="submit" class="nav-pill nav-logout-btn">
+            Logout
+          </button>
+        </form>
+        @endif
         @endauth
       </div>
     </div>

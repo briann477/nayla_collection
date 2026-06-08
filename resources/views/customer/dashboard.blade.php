@@ -1,24 +1,42 @@
-<x-app-layout>
-  <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      Dashboard Customer
-    </h2>
-  </x-slot>
+@extends('layouts.store', ['title' => 'Dashboard Customer - N.A.Y.L.A'])
 
-  <div class="py-10">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-        <h3 class="text-lg font-semibold text-gray-800">Selamat datang di N.A.Y.L.A</h3>
-        <p class="text-gray-500 mt-1">
-          Dari halaman ini kamu bisa melihat riwayat pesanan dan melanjutkan belanja.
+@section('content')
+<section class="customer-dashboard-section">
+  <div class="store-container">
+    <div class="dashboard-welcome">
+      <div>
+        <span class="eyebrow">Customer Area</span>
+        <h1>Halo, {{ auth()->user()->name }}</h1>
+        <p>
+          Selamat datang di akun N.A.Y.L.A. Dari sini kamu bisa lanjut belanja,
+          melihat keranjang, dan nanti memantau status pesanan.
         </p>
-
-        <div class="mt-6">
-          <a href="{{ route('collection') }}" class="inline-flex px-5 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-700 transition">
-            Lihat Koleksi
-          </a>
-        </div>
       </div>
+
+      <a href="{{ route('collection') }}" class="btn-primary-store">
+        Lihat Koleksi
+      </a>
+    </div>
+
+    <div class="customer-menu-grid">
+      <a href="{{ route('collection') }}" class="customer-menu-card">
+        <span>01</span>
+        <h3>Koleksi Produk</h3>
+        <p>Lihat katalog busana N.A.Y.L.A yang tersedia.</p>
+      </a>
+
+      <a href="#" class="customer-menu-card">
+        <span>02</span>
+        <h3>Keranjang</h3>
+        <p>Produk yang kamu pilih nanti akan muncul di sini.</p>
+      </a>
+
+      <a href="#" class="customer-menu-card">
+        <span>03</span>
+        <h3>Pesanan Saya</h3>
+        <p>Pantau status pesanan setelah checkout.</p>
+      </a>
     </div>
   </div>
-</x-app-layout>
+</section>
+@endsection

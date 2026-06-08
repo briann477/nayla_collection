@@ -847,3 +847,102 @@ html {
         height: 360px;
     }
 }
+
+.customer-dashboard-section {
+    padding: 80px 0;
+    min-height: 70vh;
+}
+
+.dashboard-welcome {
+    background: var(--nayla-white);
+    border: 1px solid var(--nayla-border);
+    border-radius: 34px;
+    padding: 42px;
+    box-shadow: 0 24px 70px rgba(95, 70, 56, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+}
+
+.dashboard-welcome h1 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(36px, 5vw, 58px);
+    color: var(--nayla-dark);
+}
+
+.dashboard-welcome p {
+    margin: 16px 0 0;
+    max-width: 660px;
+    color: var(--nayla-muted);
+    line-height: 1.8;
+}
+
+.customer-menu-grid {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.customer-menu-card {
+    text-decoration: none;
+    background: var(--nayla-white);
+    border: 1px solid var(--nayla-border);
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: 0 18px 50px rgba(95, 70, 56, 0.06);
+    transition: 0.2s ease;
+}
+
+.customer-menu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 24px 70px rgba(95, 70, 56, 0.11);
+}
+
+.customer-menu-card span {
+    color: var(--nayla-taupe);
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
+
+.customer-menu-card h3 {
+    margin: 16px 0 10px;
+    color: var(--nayla-dark);
+    font-size: 22px;
+}
+
+.customer-menu-card p {
+    margin: 0;
+    color: var(--nayla-muted);
+    line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+    .dashboard-welcome {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .customer-menu-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.nav-logout-form {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-logout-btn {
+    cursor: pointer;
+    font-family: inherit;
+    background: transparent;
+}
+
+.nav-logout-btn:hover {
+    background: var(--nayla-dark);
+    color: var(--nayla-white);
+}
