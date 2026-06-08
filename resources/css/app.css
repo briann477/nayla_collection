@@ -1863,3 +1863,44 @@ html {
         align-items: start;
     }
 }
+
+@media print {
+    body {
+        background: #ffffff !important;
+    }
+
+    nav,
+    .report-filter,
+    .report-pagination,
+    button,
+    a {
+        display: none !important;
+    }
+
+    .report-page {
+        background: #ffffff !important;
+        padding: 0 !important;
+    }
+
+    .max-w-7xl {
+        max-width: 100% !important;
+    }
+
+    .shadow-sm {
+        box-shadow: none !important;
+    }
+
+    .rounded-2xl,
+    .rounded-xl {
+        border-radius: 0 !important;
+    }
+
+    table {
+        page-break-inside: auto;
+    }
+
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+}

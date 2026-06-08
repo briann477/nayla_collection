@@ -51,9 +51,9 @@
             <span class="block text-sm text-gray-500 mt-1">Lihat pesanan masuk.</span>
           </a>
 
-          <a href="#" class="p-5 rounded-xl border border-gray-200 hover:bg-gray-50 transition">
+          <a href="{{ route('admin.reports.index') }}" class="p-5 rounded-xl border border-gray-200 hover:bg-gray-50 transition">
             <span class="block font-semibold text-gray-900">Laporan</span>
-            <span class="block text-sm text-gray-500 mt-1">Segera dibuat.</span>
+            <span class="block text-sm text-gray-500 mt-1">Lihat rekap penjualan.</span>
           </a>
         </div>
       </div>

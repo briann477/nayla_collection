@@ -10,6 +10,7 @@ use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ReportController;
 
 Route::get('/', [StoreController::class, 'home'])->name('home');
 Route::get('/koleksi', [StoreController::class, 'collection'])->name('collection');
@@ -48,6 +49,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
     Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
+
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 });
 
 Route::middleware('auth')->group(function () {
@@ -57,4 +60,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
-    
