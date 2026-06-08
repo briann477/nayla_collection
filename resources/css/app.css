@@ -1583,3 +1583,220 @@ html {
         grid-template-columns: 1fr;
     }
 }
+
+.payment-page-section {
+    padding: 70px 0;
+    min-height: 75vh;
+}
+
+.payment-page-card {
+    background: var(--nayla-white);
+    border: 1px solid var(--nayla-border);
+    border-radius: 38px;
+    padding: 38px;
+    box-shadow: 0 24px 70px rgba(95, 70, 56, 0.08);
+}
+
+.payment-page-header {
+    margin-bottom: 28px;
+}
+
+.payment-page-header h1 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(38px, 5vw, 66px);
+    color: var(--nayla-dark);
+}
+
+.payment-page-header p {
+    margin: 14px 0 0;
+    color: var(--nayla-muted);
+}
+
+.payment-page-grid {
+    display: grid;
+    grid-template-columns: 1fr 390px;
+    gap: 26px;
+    align-items: start;
+}
+
+.payment-main-box,
+.payment-summary-box {
+    background: var(--nayla-ivory);
+    border: 1px solid var(--nayla-border);
+    border-radius: 30px;
+    padding: 30px;
+}
+
+.payment-method-chip {
+    display: inline-flex;
+    padding: 9px 14px;
+    border-radius: 999px;
+    background: var(--nayla-dark);
+    color: var(--nayla-white);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.payment-main-box h2 {
+    margin: 18px 0 12px;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(30px, 4vw, 50px);
+    color: var(--nayla-dark);
+}
+
+.payment-main-box p {
+    color: var(--nayla-muted);
+    line-height: 1.8;
+}
+
+.payment-total-display,
+.va-display,
+.cod-box {
+    margin-top: 22px;
+    padding: 22px;
+    border-radius: 24px;
+    background: var(--nayla-white);
+    border: 1px solid var(--nayla-border);
+}
+
+.payment-total-display span,
+.va-display span,
+.cod-box strong {
+    display: block;
+    color: var(--nayla-muted);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.payment-total-display strong,
+.cod-box span {
+    display: block;
+    color: var(--nayla-brown);
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.va-display strong {
+    display: block;
+    color: var(--nayla-dark);
+    font-size: 30px;
+    letter-spacing: 3px;
+    word-break: break-word;
+}
+
+.qris-payment-box {
+    margin-top: 24px;
+    padding: 26px;
+    border-radius: 28px;
+    background: var(--nayla-white);
+    border: 1px solid var(--nayla-border);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.large-qris {
+    width: 260px;
+    height: 260px;
+}
+
+.payment-summary-box h3 {
+    margin: 0 0 18px;
+    color: var(--nayla-dark);
+    font-size: 22px;
+}
+
+.payment-info-row {
+    padding: 13px 0;
+    border-bottom: 1px solid var(--nayla-border);
+}
+
+.payment-info-row span {
+    display: block;
+    color: var(--nayla-muted);
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.payment-info-row strong {
+    color: var(--nayla-dark);
+    line-height: 1.6;
+}
+
+.payment-items {
+    margin-top: 18px;
+    display: grid;
+    gap: 10px;
+}
+
+.payment-items div,
+.payment-total-lines div {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.payment-items span,
+.payment-total-lines span {
+    color: var(--nayla-muted);
+}
+
+.payment-items strong,
+.payment-total-lines strong {
+    color: var(--nayla-dark);
+    white-space: nowrap;
+}
+
+.payment-total-lines {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--nayla-border);
+    display: grid;
+    gap: 10px;
+}
+
+.payment-total-lines div:last-child {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.payment-total-lines div:last-child strong {
+    color: var(--nayla-brown);
+}
+
+.payment-btn {
+    width: 100%;
+    margin-top: 14px;
+}
+
+@media (max-width: 900px) {
+    .payment-page-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .large-qris {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+@media (max-width: 520px) {
+    .payment-page-card,
+    .payment-main-box,
+    .payment-summary-box {
+        padding: 22px;
+    }
+
+    .va-display strong {
+        font-size: 22px;
+    }
+
+    .payment-total-display strong,
+    .cod-box span {
+        font-size: 26px;
+    }
+}

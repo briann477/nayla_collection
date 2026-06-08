@@ -121,10 +121,10 @@ class CheckoutController extends Controller
             return $order;
         });
 
-        return redirect()->route('checkout.success', $order);
+        return redirect()->route('checkout.payment', $order);
     }
 
-    public function success(Order $order): View
+    public function payment(Order $order): View
     {
         if ($order->user_id !== auth()->id()) {
             abort(403);
@@ -132,7 +132,7 @@ class CheckoutController extends Controller
 
         $order->load('items.product');
 
-        return view('store.checkout-success', compact('order'));
+        return view('store.payment', compact('order'));
     }
 
     private function generateDummyVaNumber(): string

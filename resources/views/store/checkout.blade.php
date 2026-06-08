@@ -61,22 +61,22 @@
           @enderror
         </div>
 
-        <h3 class="payment-title">Metode Pembayaran</h3>
+        <h3 class="payment-title">Pilih Metode Pembayaran</h3>
 
         <div class="payment-options">
           <label class="payment-option">
             <input type="radio" name="payment_method" value="cod" {{ old('payment_method', 'cod') === 'cod' ? 'checked' : '' }}>
             <div>
-              <strong>COD</strong>
-              <span>Bayar di tempat saat pesanan diterima.</span>
+              <strong>COD / Bayar di Tempat</strong>
+              <span>Pembayaran dilakukan saat pesanan diterima.</span>
             </div>
           </label>
 
           <label class="payment-option">
             <input type="radio" name="payment_method" value="transfer" {{ old('payment_method') === 'transfer' ? 'checked' : '' }}>
             <div>
-              <strong>Transfer VA</strong>
-              <span>Nomor virtual account dummy akan muncul setelah checkout.</span>
+              <strong>Transfer Virtual Account</strong>
+              <span>Nomor VA dummy akan muncul di halaman pembayaran.</span>
             </div>
           </label>
 
@@ -84,7 +84,7 @@
             <input type="radio" name="payment_method" value="qris" {{ old('payment_method') === 'qris' ? 'checked' : '' }}>
             <div>
               <strong>QRIS</strong>
-              <span>QRIS dummy akan muncul setelah checkout.</span>
+              <span>QRIS dummy akan muncul di halaman pembayaran.</span>
             </div>
           </label>
         </div>
@@ -92,30 +92,6 @@
         @error('payment_method')
         <p class="form-error">{{ $message }}</p>
         @enderror
-
-        <div class="payment-preview">
-          <div class="preview-box preview-cod">
-            <h4>COD / Bayar di Tempat</h4>
-            <p>Pembayaran dilakukan langsung kepada kurir saat produk diterima.</p>
-          </div>
-
-          <div class="preview-box preview-transfer">
-            <h4>Transfer Virtual Account</h4>
-            <p>Nomor VA dummy akan dibuat otomatis setelah pesanan berhasil.</p>
-            <strong>Contoh: 8808 1234 5678 9999</strong>
-          </div>
-
-          <div class="preview-box preview-qris">
-            <h4>QRIS Dummy</h4>
-            <div class="dummy-qris-small">
-              <span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span>
-            </div>
-            <p>QRIS ini hanya simulasi untuk demo aplikasi.</p>
-          </div>
-        </div>
       </div>
 
       <div class="cart-summary checkout-summary">
@@ -146,11 +122,11 @@
         </div>
 
         <button type="submit" class="btn-primary-store summary-btn">
-          Buat Pesanan
+          Lanjut ke Pembayaran
         </button>
 
         <p>
-          Untuk transfer dan QRIS, pembayaran pada sistem ini masih berupa simulasi/dummy.
+          Setelah pesanan dibuat, kamu akan diarahkan ke halaman pembayaran sesuai metode yang dipilih.
         </p>
       </div>
     </form>
