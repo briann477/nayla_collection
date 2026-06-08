@@ -32,9 +32,10 @@
         @auth
         @if (auth()->user()->role === 'customer')
         <a href="{{ route('cart.index') }}" class="{{ request()->routeIs('cart.*') ? 'active' : '' }}">Keranjang</a>
+        <a href="{{ route('orders.index') }}" class="{{ request()->routeIs('orders.*') ? 'active' : '' }}">Pesanan Saya</a>
         @endif
         @endauth
-
+        
         @guest
         <a href="{{ route('login') }}" class="nav-pill">Login</a>
         @endguest

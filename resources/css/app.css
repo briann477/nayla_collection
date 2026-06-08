@@ -1800,3 +1800,66 @@ html {
         font-size: 26px;
     }
 }
+
+.orders-section {
+    padding: 70px 0;
+    min-height: 70vh;
+}
+
+.orders-list {
+    display: grid;
+    gap: 16px;
+}
+
+.order-card {
+    background: var(--nayla-white);
+    border: 1px solid var(--nayla-border);
+    border-radius: 28px;
+    padding: 22px;
+    box-shadow: 0 18px 50px rgba(95, 70, 56, 0.06);
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 20px;
+    align-items: center;
+}
+
+.order-code {
+    color: var(--nayla-taupe);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.order-card h3 {
+    margin: 8px 0;
+    color: var(--nayla-dark);
+    font-size: 24px;
+}
+
+.order-card p {
+    margin: 0;
+    color: var(--nayla-muted);
+}
+
+.order-status-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.status-pill {
+    padding: 9px 12px;
+    border-radius: 999px;
+    background: var(--nayla-ivory);
+    border: 1px solid var(--nayla-border);
+    color: var(--nayla-muted);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+@media (max-width: 900px) {
+    .order-card {
+        grid-template-columns: 1fr;
+        align-items: start;
+    }
+}

@@ -20,7 +20,7 @@
 
         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
           <p class="text-sm text-gray-500">Pesanan</p>
-          <h3 class="text-3xl font-bold text-gray-900 mt-2">0</h3>
+          <h3 class="text-3xl font-bold text-gray-900 mt-2">{{ $orderCount }}</h3>
         </div>
 
         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
@@ -46,9 +46,9 @@
             <span class="block text-sm text-gray-500 mt-1">Tambah produk dan stok.</span>
           </a>
 
-          <a href="#" class="p-5 rounded-xl border border-gray-200 hover:bg-gray-50 transition">
+          <a href="{{ route('admin.orders.index') }}" class="p-5 rounded-xl border border-gray-200 hover:bg-gray-50 transition">
             <span class="block font-semibold text-gray-900">Kelola Pesanan</span>
-            <span class="block text-sm text-gray-500 mt-1">Segera dibuat.</span>
+            <span class="block text-sm text-gray-500 mt-1">Lihat pesanan masuk.</span>
           </a>
 
           <a href="#" class="p-5 rounded-xl border border-gray-200 hover:bg-gray-50 transition">
