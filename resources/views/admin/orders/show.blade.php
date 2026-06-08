@@ -57,6 +57,22 @@
             @endif
           </div>
 
+          @if ($order->payment_method !== 'cod')
+          <h3 class="text-lg font-semibold text-gray-900 mt-8">Bukti Pembayaran</h3>
+
+          <div class="mt-4 p-4 rounded-xl bg-gray-50 border border-gray-100">
+            @if ($order->payment_proof)
+            <p class="text-sm text-gray-500 mb-3">Bukti pembayaran customer:</p>
+            <img
+              src="{{ asset('storage/' . $order->payment_proof) }}"
+              alt="Bukti Pembayaran"
+              class="max-w-sm rounded-xl border border-gray-200">
+            @else
+            <p class="text-gray-500">Customer belum mengupload bukti pembayaran.</p>
+            @endif
+          </div>
+          @endif
+
           <h3 class="text-lg font-semibold text-gray-900 mt-8">Produk Dipesan</h3>
 
           <div class="mt-4 border border-gray-100 rounded-xl overflow-hidden">

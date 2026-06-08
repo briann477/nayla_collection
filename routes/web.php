@@ -4,13 +4,13 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\ReportController;
 
 Route::get('/', [StoreController::class, 'home'])->name('home');
 Route::get('/koleksi', [StoreController::class, 'collection'])->name('collection');
@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
     Route::get('/pembayaran/{order}', [CheckoutController::class, 'payment'])->name('checkout.payment');
+    Route::post('/pembayaran/{order}/upload-bukti', [CheckoutController::class, 'uploadProof'])->name('checkout.upload-proof');
 
     Route::get('/pesanan-saya', [CustomerOrderController::class, 'index'])->name('orders.index');
     Route::get('/pesanan-saya/{order}', [CustomerOrderController::class, 'show'])->name('orders.show');

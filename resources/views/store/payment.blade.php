@@ -3,6 +3,24 @@
 @section('content')
 <section class="payment-page-section">
   <div class="store-container">
+    @if (session('success'))
+    <div class="store-alert success">
+      {{ session('success') }}
+    </div>
+    @endif
+
+    @if (session('error'))
+    <div class="store-alert error">
+      {{ session('error') }}
+    </div>
+    @endif
+
+    @if ($errors->any())
+    <div class="store-alert error">
+      Bukti pembayaran wajib berupa gambar JPG, JPEG, PNG, atau WEBP maksimal 2MB.
+    </div>
+    @endif
+
     <div class="payment-page-card">
       <div class="payment-page-header">
         <span class="eyebrow">Payment</span>
@@ -34,6 +52,7 @@
           <h2>Transfer Virtual Account</h2>
           <p>
             Silakan transfer sesuai total pembayaran ke nomor virtual account dummy berikut.
+            Setelah itu upload bukti pembayaran agar bisa dicek admin.
           </p>
 
           <div class="payment-total-display">
@@ -56,6 +75,7 @@
           <h2>Scan QRIS Dummy</h2>
           <p>
             Scan QRIS dummy berikut untuk simulasi pembayaran pesanan.
+            Setelah itu upload bukti pembayaran agar bisa dicek admin.
           </p>
 
           <div class="payment-total-display">
@@ -81,6 +101,39 @@
           <p class="dummy-note">
             QRIS ini hanya visual dummy untuk demo aplikasi, bukan QRIS asli.
           </p>
+          @endif
+
+          @if ($order->payment_method !== 'cod')
+          <div class="upload-proof-box">
+            <h3>Upload Bukti Pembayaran</h3>
+
+            @if ($order->payment_proof)
+            <div class="current-proof">
+              <p>Bukti pembayaran sudah diupload.</p>
+              <img src="{{ asset('storage/' . $order->payment_proof) }}" alt="Bukti Pembayaran">
+            </div>
+            @endif
+
+            @if ($order->payment_status !== 'paid')
+            <form action="{{ route('checkout.upload-proof', $order) }}" method="POST" enctype="multipart/form-data" class="proof-form">
+              @csrf
+
+              <input type="file" name="payment_proof" accept="image/*" required>
+
+              <button type="submit" class="btn-primary-store">
+                Upload Bukti
+              </button>
+            </form>
+
+            <p class="dummy-note">
+              Format gambar: JPG, JPEG, PNG, atau WEBP. Maksimal 2MB.
+            </p>
+            @else
+            <div class="payment-paid-note">
+              Pembayaran sudah dikonfirmasi admin.
+            </div>
+            @endif
+          </div>
           @endif
         </div>
 
@@ -138,12 +191,12 @@
             </div>
           </div>
 
-          <a href="{{ route('collection') }}" class="btn-secondary-store payment-btn">
-            Belanja Lagi
+          <a href="{{ route('orders.show', $order) }}" class="btn-primary-store payment-btn">
+            Lihat Detail Pesanan
           </a>
 
-          <a href="{{ route('home') }}" class="btn-primary-store payment-btn">
-            Kembali ke Home
+          <a href="{{ route('collection') }}" class="btn-secondary-store payment-btn">
+            Belanja Lagi
           </a>
         </div>
       </div>

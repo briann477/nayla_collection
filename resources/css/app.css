@@ -2228,3 +2228,61 @@ html {
         flex-direction: column;
     }
 }
+
+.upload-proof-box {
+    margin-top: 28px;
+    padding: 24px;
+    border-radius: 26px;
+    background: var(--nayla-white);
+    border: 1px solid var(--nayla-border);
+}
+
+.upload-proof-box h3 {
+    margin: 0 0 16px;
+    color: var(--nayla-dark);
+    font-size: 22px;
+}
+
+.proof-form {
+    display: grid;
+    gap: 14px;
+}
+
+.proof-form input[type="file"] {
+    width: 100%;
+    border: 1px solid var(--nayla-border);
+    border-radius: 18px;
+    padding: 14px;
+    background: var(--nayla-ivory);
+    color: var(--nayla-muted);
+}
+
+.current-proof {
+    margin-bottom: 18px;
+}
+
+.current-proof p {
+    margin: 0 0 10px;
+    color: var(--nayla-muted);
+    font-weight: 700;
+}
+
+.current-proof img,
+.order-proof-preview {
+    width: min(100%, 360px);
+    max-height: 420px;
+    object-fit: contain;
+    border-radius: 20px;
+    background: var(--nayla-cream);
+    border: 1px solid var(--nayla-border);
+    display: block;
+}
+
+.payment-paid-note {
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: #eefaf1;
+    color: #25733c;
+    border: 1px solid #ccefd5;
+    font-weight: 700;
+}

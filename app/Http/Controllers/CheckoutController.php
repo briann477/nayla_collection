@@ -8,6 +8,7 @@ use App\Models\OrderItem;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class CheckoutController extends Controller
@@ -80,7 +81,7 @@ class CheckoutController extends Controller
 
             $paymentStatus = $paymentMethod === 'cod'
                 ? 'unpaid'
-                : 'waiting_confirmation';
+                : 'unpaid';
 
             $orderStatus = $paymentMethod === 'cod'
                 ? 'processing'
@@ -133,6 +134,38 @@ class CheckoutController extends Controller
         $order->load('items.product');
 
         return view('store.payment', compact('order'));
+    }
+
+    public function uploadProof(Request $request, Order $order): RedirectResponse
+    {
+        if ($order->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        if ($order->payment_method === 'cod') {
+            return redirect()
+                ->route('orders.show', $order)
+                ->with('error', 'Pesanan COD tidak memerlukan bukti pembayaran.');
+        }
+
+        $validated = $request->validate([
+            'payment_proof' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+        ]);
+
+        if ($order->payment_proof) {
+            Storage::disk('public')->delete($order->payment_proof);
+        }
+
+        $proofPath = $request->file('payment_proof')->store('payment-proofs', 'public');
+
+        $order->update([
+            'payment_proof' => $proofPath,
+            'payment_status' => 'waiting_confirmation',
+        ]);
+
+        return redirect()
+            ->route('orders.show', $order)
+            ->with('success', 'Bukti pembayaran berhasil diupload. Menunggu konfirmasi admin.');
     }
 
     private function generateDummyVaNumber(): string

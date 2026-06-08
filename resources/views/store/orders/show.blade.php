@@ -5,6 +5,18 @@
   <div class="store-container">
     <a href="{{ route('orders.index') }}" class="back-link">← Kembali ke Pesanan Saya</a>
 
+    @if (session('success'))
+    <div class="store-alert success">
+      {{ session('success') }}
+    </div>
+    @endif
+
+    @if (session('error'))
+    <div class="store-alert error">
+      {{ session('error') }}
+    </div>
+    @endif
+
     <div class="payment-page-card">
       <div class="payment-page-header">
         <span class="eyebrow">Order Detail</span>
@@ -32,10 +44,23 @@
             <strong>{{ $order->address }}</strong>
           </div>
 
-          @if ($order->payment_method !== 'cod' && $order->payment_status !== 'paid')
+          @if ($order->payment_method !== 'cod')
+          <div class="payment-info-row">
+            <span>Bukti Pembayaran</span>
+
+            @if ($order->payment_proof)
+            <strong>Sudah diupload</strong>
+            <img src="{{ asset('storage/' . $order->payment_proof) }}" alt="Bukti Pembayaran" class="order-proof-preview">
+            @else
+            <strong>Belum diupload</strong>
+            @endif
+          </div>
+
+          @if ($order->payment_status !== 'paid')
           <a href="{{ route('checkout.payment', $order) }}" class="btn-primary-store payment-btn">
-            Lihat Pembayaran
+            Upload / Lihat Pembayaran
           </a>
+          @endif
           @endif
         </div>
 
