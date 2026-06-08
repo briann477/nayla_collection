@@ -62,6 +62,31 @@
           </a>
           @endif
           @endif
+
+          @if ($order->order_status === 'shipped')
+          <div class="order-complete-box">
+            <h3>Pesanan sudah sampai?</h3>
+            <p>
+              Klik tombol di bawah jika produk sudah diterima dengan baik.
+              Status pesanan akan berubah menjadi selesai.
+            </p>
+
+            <form action="{{ route('orders.complete', $order) }}" method="POST" onsubmit="return confirm('Tandai pesanan ini sebagai diterima?')">
+              @csrf
+              @method('PUT')
+
+              <button type="submit" class="btn-primary-store">
+                Pesanan Diterima
+              </button>
+            </form>
+          </div>
+          @endif
+
+          @if ($order->order_status === 'completed')
+          <div class="order-completed-note">
+            Pesanan ini sudah selesai. Terima kasih sudah berbelanja di N.A.Y.L.A.
+          </div>
+          @endif
         </div>
 
         <div class="payment-summary-box">
@@ -92,6 +117,10 @@
               <strong>{{ $order->formattedTotal() }}</strong>
             </div>
           </div>
+
+          <a href="{{ route('collection') }}" class="btn-secondary-store payment-btn">
+            Belanja Lagi
+          </a>
         </div>
       </div>
     </div>

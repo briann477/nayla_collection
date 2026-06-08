@@ -2286,3 +2286,34 @@ html {
     border: 1px solid #ccefd5;
     font-weight: 700;
 }
+
+.order-complete-box {
+    margin-top: 24px;
+    padding: 22px;
+    border-radius: 24px;
+    background: var(--nayla-white);
+    border: 1px solid var(--nayla-border);
+}
+
+.order-complete-box h3 {
+    margin: 0 0 10px;
+    color: var(--nayla-dark);
+    font-size: 22px;
+}
+
+.order-complete-box p {
+    margin: 0 0 18px;
+    color: var(--nayla-muted);
+    line-height: 1.7;
+}
+
+.order-completed-note {
+    margin-top: 24px;
+    padding: 18px;
+    border-radius: 20px;
+    background: #eefaf1;
+    color: #25733c;
+    border: 1px solid #ccefd5;
+    font-weight: 700;
+    line-height: 1.7;
+}

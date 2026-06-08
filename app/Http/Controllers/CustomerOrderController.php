@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class CustomerOrderController extends Controller
@@ -25,5 +26,26 @@ class CustomerOrderController extends Controller
         $order->load('items.product');
 
         return view('store.orders.show', compact('order'));
+    }
+
+    public function complete(Order $order): RedirectResponse
+    {
+        if ($order->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        if ($order->order_status !== 'shipped') {
+            return redirect()
+                ->route('orders.show', $order)
+                ->with('error', 'Pesanan hanya bisa diselesaikan jika statusnya sudah dikirim.');
+        }
+
+        $order->update([
+            'order_status' => 'completed',
+        ]);
+
+        return redirect()
+            ->route('orders.show', $order)
+            ->with('success', 'Pesanan berhasil ditandai sebagai diterima. Terima kasih sudah berbelanja di N.A.Y.L.A.');
     }
 }

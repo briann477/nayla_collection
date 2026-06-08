@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/pesanan-saya', [CustomerOrderController::class, 'index'])->name('orders.index');
     Route::get('/pesanan-saya/{order}', [CustomerOrderController::class, 'show'])->name('orders.show');
+    Route::put('/pesanan-saya/{order}/selesai', [CustomerOrderController::class, 'complete'])->name('orders.complete');
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
