@@ -5,6 +5,18 @@
   <div class="store-container">
     <a href="{{ route('collection') }}" class="back-link">← Kembali ke Koleksi</a>
 
+    @if (session('success'))
+    <div class="store-alert success">
+      {{ session('success') }}
+    </div>
+    @endif
+
+    @if (session('error'))
+    <div class="store-alert error">
+      {{ session('error') }}
+    </div>
+    @endif
+
     <div class="detail-grid">
       <div class="detail-image-card">
         @if ($product->image && \Illuminate\Support\Facades\Storage::disk('public')->exists($product->image))
@@ -46,9 +58,29 @@
         <div class="detail-actions">
           @auth
           @if (auth()->user()->role === 'customer')
-          <button class="btn-primary-store" type="button">
-            Tambah ke Keranjang
-          </button>
+          <form action="{{ route('cart.store', $product) }}" method="POST" class="cart-add-form">
+            @csrf
+
+            <div class="quantity-box">
+              <label for="quantity">Jumlah</label>
+              <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                value="1"
+                min="1"
+                max="{{ $product->stock }}"
+                {{ $product->stock <= 0 ? 'disabled' : '' }}>
+            </div>
+
+            @error('quantity')
+            <p class="form-error">{{ $message }}</p>
+            @enderror
+
+            <button class="btn-primary-store" type="submit" {{ $product->stock <= 0 ? 'disabled' : '' }}>
+              Tambah ke Keranjang
+            </button>
+          </form>
           @else
           <a href="{{ route('admin.products.edit', $product) }}" class="btn-primary-store">
             Edit Produk

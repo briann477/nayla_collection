@@ -29,6 +29,12 @@
         <a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}">Tentang</a>
         <a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">Kontak</a>
 
+        @auth
+        @if (auth()->user()->role === 'customer')
+        <a href="{{ route('cart.index') }}" class="{{ request()->routeIs('cart.*') ? 'active' : '' }}">Keranjang</a>
+        @endif
+        @endauth
+
         @guest
         <a href="{{ route('login') }}" class="nav-pill">Login</a>
         @endguest
