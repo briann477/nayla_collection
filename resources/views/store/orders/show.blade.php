@@ -92,11 +92,23 @@
         <div class="payment-summary-box">
           <h3>Produk Dipesan</h3>
 
-          <div class="payment-items">
+          <div class="order-product-list">
             @foreach ($order->items as $item)
-            <div>
-              <span>{{ $item->product_name }} x {{ $item->quantity }}</span>
-              <strong>{{ $item->formattedSubtotal() }}</strong>
+            <div class="order-product-row">
+              @if ($item->product && $item->product->image && \Illuminate\Support\Facades\Storage::disk('public')->exists($item->product->image))
+              <img src="{{ asset('storage/' . $item->product->image) }}" alt="{{ $item->product_name }}">
+              @else
+              <div class="order-product-placeholder">N</div>
+              @endif
+
+              <div class="order-product-info">
+                <strong>{{ $item->product_name }}</strong>
+                <span>{{ $item->quantity }} x {{ $item->formattedPrice() }}</span>
+              </div>
+
+              <strong class="order-product-subtotal">
+                {{ $item->formattedSubtotal() }}
+              </strong>
             </div>
             @endforeach
           </div>

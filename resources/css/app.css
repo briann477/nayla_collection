@@ -2317,3 +2317,68 @@ html {
     font-weight: 700;
     line-height: 1.7;
 }
+
+.order-product-list {
+    display: grid;
+    gap: 14px;
+}
+
+.order-product-row {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 14px;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--nayla-border);
+}
+
+.order-product-row:last-child {
+    border-bottom: 0;
+}
+
+.order-product-row img,
+.order-product-placeholder {
+    width: 64px;
+    height: 78px;
+    border-radius: 16px;
+    object-fit: cover;
+    background: var(--nayla-cream);
+    border: 1px solid var(--nayla-border);
+}
+
+.order-product-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--nayla-taupe);
+    font-family: "Playfair Display", serif;
+    font-size: 24px;
+}
+
+.order-product-info strong {
+    display: block;
+    color: var(--nayla-dark);
+    line-height: 1.4;
+}
+
+.order-product-info span {
+    display: block;
+    margin-top: 5px;
+    color: var(--nayla-muted);
+    font-size: 14px;
+}
+
+.order-product-subtotal {
+    color: var(--nayla-brown);
+    white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+    .order-product-row {
+        grid-template-columns: 58px 1fr;
+    }
+
+    .order-product-subtotal {
+        grid-column: 2;
+    }
+}

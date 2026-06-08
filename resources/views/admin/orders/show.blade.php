@@ -89,15 +89,34 @@
               <tbody class="divide-y divide-gray-100">
                 @foreach ($order->items as $item)
                 <tr>
-                  <td class="px-5 py-4 font-medium text-gray-900">
-                    {{ $item->product_name }}
+                  <td class="px-5 py-4">
+                    <div class="flex items-center gap-3">
+                      @if ($item->product && $item->product->image && \Illuminate\Support\Facades\Storage::disk('public')->exists($item->product->image))
+                      <img
+                        src="{{ asset('storage/' . $item->product->image) }}"
+                        alt="{{ $item->product_name }}"
+                        class="w-14 h-16 rounded-lg object-cover border border-gray-100">
+                      @else
+                      <div class="w-14 h-16 rounded-lg bg-gray-100 flex items-center justify-center text-gray-500 text-xs">
+                        No Img
+                      </div>
+                      @endif
+
+                      <div>
+                        <p class="font-medium text-gray-900">{{ $item->product_name }}</p>
+                        <p class="text-xs text-gray-500">Produk pesanan</p>
+                      </div>
+                    </div>
                   </td>
+
                   <td class="px-5 py-4 text-gray-600">
                     {{ $item->formattedPrice() }}
                   </td>
+
                   <td class="px-5 py-4 text-gray-600">
                     {{ $item->quantity }}
                   </td>
+
                   <td class="px-5 py-4 text-right font-semibold text-gray-900">
                     {{ $item->formattedSubtotal() }}
                   </td>
