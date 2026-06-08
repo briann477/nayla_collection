@@ -1,11 +1,11 @@
 <x-guest-layout>
-    <div class="auth-heading">
+    <div class="auth-clean-heading">
         <span>Create Account</span>
-        <h2>Daftar Akun</h2>
+        <h2>Daftar</h2>
         <p>Buat akun customer untuk mulai belanja koleksi N.A.Y.L.A.</p>
     </div>
 
-    <form method="POST" action="{{ route('register') }}" class="auth-form">
+    <form method="POST" action="{{ route('register') }}" class="auth-clean-form">
         @csrf
 
         <div>
@@ -67,17 +67,17 @@
             @enderror
         </div>
 
-        <button type="submit" class="auth-submit">
+        <button type="submit" class="auth-clean-submit">
             Daftar
         </button>
 
-        <p class="auth-switch">
+        <p class="auth-clean-switch">
             Sudah punya akun?
             <a href="{{ route('login') }}">Login di sini</a>
         </p>
 
-        <a href="{{ route('home') }}" class="auth-back-link">
-            ← Kembali ke Home
+        <a href="{{ route('home') }}" class="auth-clean-back">
+            Kembali ke Home
         </a>
     </form>
 </x-guest-layout>

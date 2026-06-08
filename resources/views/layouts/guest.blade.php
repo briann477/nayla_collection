@@ -12,30 +12,27 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="auth-body">
-    <main class="auth-page">
-        <section class="auth-brand-panel">
-            <a href="{{ route('home') }}" class="auth-brand-logo">N.A.Y.L.A</a>
+<body class="auth-clean-body">
+    <main class="auth-clean-page">
+        <div class="auth-clean-bg bg-one"></div>
+        <div class="auth-clean-bg bg-two"></div>
 
-            <div class="auth-brand-copy">
-                <span>Modest Fashion Collection</span>
-                <h1>Elegant wear for graceful moments.</h1>
-                <p>
-                    Masuk ke akun kamu untuk melanjutkan belanja koleksi busana
-                    elegan N.A.Y.L.A.
-                </p>
-            </div>
+        <section class="auth-clean-shell">
+            <a href="{{ route('home') }}" class="auth-clean-logo">
+                N.A.Y.L.A
+            </a>
 
-            <div class="auth-mini-card">
-                <strong>Soft • Elegant • Modest</strong>
-                <small>Nayla Collection Depok</small>
-            </div>
-        </section>
+            <p class="auth-clean-tagline">
+                Elegant modest wear collection
+            </p>
 
-        <section class="auth-form-panel">
-            <div class="auth-card">
+            <div class="auth-clean-card">
                 {{ $slot }}
             </div>
+
+            <p class="auth-clean-footer">
+                Nayla Collection Depok • Soft • Elegant • Modest
+            </p>
         </section>
     </main>
 </body>
