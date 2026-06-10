@@ -1,47 +1,37 @@
 <x-app-layout>
   <x-slot name="header">
-    <div class="admin-dashboard-title">
+    <div class="admin-dashboard-title admin-dashboard-title-simple">
       <span>Admin Center</span>
       <h2>Dashboard N.A.Y.L.A</h2>
-      <p>Kelola produk, pesanan, pembayaran, dan laporan penjualan dari satu tempat.</p>
+      <p>Ringkasan aktivitas toko, pesanan terbaru, dan laporan penjualan.</p>
     </div>
   </x-slot>
 
-  <div class="admin-dashboard-page">
-    <div class="admin-dashboard-hero">
-      <div>
-        <span class="admin-hero-eyebrow">Welcome Back</span>
-        <h1>Halo, {{ auth()->user()->name }}</h1>
-        <p>
-          Pantau aktivitas toko N.A.Y.L.A, cek pesanan terbaru, dan siapkan laporan untuk owner.
-        </p>
-      </div>
-
-      <div class="admin-hero-card">
-        <span>Total Pendapatan</span>
+  <div class="admin-dashboard-page admin-dashboard-page-simple">
+    <div class="admin-stat-grid admin-stat-grid-five">
+      <div class="admin-stat-card admin-stat-revenue">
+        <span>Pendapatan</span>
         <strong>Rp {{ number_format($paidRevenue, 0, ',', '.') }}</strong>
-        <small>Dari pembayaran yang sudah dikonfirmasi.</small>
+        <p>Pembayaran sudah dikonfirmasi.</p>
       </div>
-    </div>
 
-    <div class="admin-stat-grid">
-      <div class="admin-stat-card">
+      <a href="{{ route('admin.products.index') }}" class="admin-stat-card admin-stat-link">
         <span>Produk</span>
         <strong>{{ $productCount }}</strong>
         <p>Total katalog produk.</p>
-      </div>
+      </a>
 
-      <div class="admin-stat-card">
+      <a href="{{ route('admin.categories.index') }}" class="admin-stat-card admin-stat-link">
         <span>Kategori</span>
         <strong>{{ $categoryCount }}</strong>
-        <p>Kategori produk aktif.</p>
-      </div>
+        <p>Kategori tersedia.</p>
+      </a>
 
-      <div class="admin-stat-card">
+      <a href="{{ route('admin.orders.index') }}" class="admin-stat-card admin-stat-link">
         <span>Pesanan</span>
         <strong>{{ $orderCount }}</strong>
         <p>Total pesanan masuk.</p>
-      </div>
+      </a>
 
       <div class="admin-stat-card">
         <span>Customer</span>
@@ -50,43 +40,7 @@
       </div>
     </div>
 
-    <div class="admin-dashboard-grid">
-      <div class="admin-panel-card">
-        <div class="admin-panel-head">
-          <div>
-            <span>Quick Menu</span>
-            <h3>Menu Admin</h3>
-          </div>
-          <p>{{ $pendingOrderCount }} pesanan masih perlu dipantau.</p>
-        </div>
-
-        <div class="admin-shortcut-grid">
-          <a href="{{ route('admin.categories.index') }}" class="admin-shortcut-card">
-            <span>01</span>
-            <h4>Kelola Kategori</h4>
-            <p>Tambah dan ubah kategori produk.</p>
-          </a>
-
-          <a href="{{ route('admin.products.index') }}" class="admin-shortcut-card">
-            <span>02</span>
-            <h4>Kelola Produk</h4>
-            <p>Atur produk, harga, stok, dan status.</p>
-          </a>
-
-          <a href="{{ route('admin.orders.index') }}" class="admin-shortcut-card">
-            <span>03</span>
-            <h4>Kelola Pesanan</h4>
-            <p>Cek pembayaran dan update status pesanan.</p>
-          </a>
-
-          <a href="{{ route('admin.reports.index') }}" class="admin-shortcut-card">
-            <span>04</span>
-            <h4>Laporan</h4>
-            <p>Lihat rekap penjualan untuk owner.</p>
-          </a>
-        </div>
-      </div>
-
+    <div class="admin-dashboard-grid clean-dashboard-grid">
       <div class="admin-panel-card">
         <div class="admin-panel-head">
           <div>
@@ -117,6 +71,36 @@
           </div>
           @endforelse
         </div>
+      </div>
+
+      <div class="admin-panel-card admin-summary-card">
+        <div class="admin-panel-head">
+          <div>
+            <span>Overview</span>
+            <h3>Ringkasan</h3>
+          </div>
+        </div>
+
+        <div class="admin-summary-list">
+          <div>
+            <span>Pesanan perlu dipantau</span>
+            <strong>{{ $pendingOrderCount }}</strong>
+          </div>
+
+          <div>
+            <span>Total transaksi</span>
+            <strong>{{ $orderCount }}</strong>
+          </div>
+
+          <div>
+            <span>Produk tersedia</span>
+            <strong>{{ $productCount }}</strong>
+          </div>
+        </div>
+
+        <a href="{{ route('admin.reports.index') }}" class="admin-report-button">
+          Lihat Laporan Penjualan
+        </a>
       </div>
     </div>
   </div>

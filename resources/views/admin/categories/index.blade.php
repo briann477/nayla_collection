@@ -1,66 +1,91 @@
 <x-app-layout>
   <x-slot name="header">
-    <div class="flex items-center justify-between">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Kelola Kategori
-      </h2>
+    <div class="admin-page-title-row category-title-compact">
+      <div>
+        <span class="admin-page-eyebrow">Category Management</span>
+        <h2>Kelola Kategori</h2>
+        <p>Atur kategori produk yang tampil pada katalog N.A.Y.L.A.</p>
+      </div>
 
-      <a href="{{ route('admin.categories.create') }}" class="px-4 py-2 bg-gray-900 text-white rounded-lg text-sm hover:bg-gray-700">
-        Tambah Kategori
-      </a>
+      <div class="admin-title-side">
+        <a href="{{ route('admin.categories.create') }}" class="admin-primary-btn">
+          Tambah Kategori
+        </a>
+
+        <div class="admin-inline-stats">
+          <div>
+            <span>Total</span>
+            <strong>{{ $categories->count() }}</strong>
+          </div>
+
+          <div>
+            <span>Aktif</span>
+            <strong>{{ $categories->where('is_active', true)->count() }}</strong>
+          </div>
+        </div>
+      </div>
     </div>
   </x-slot>
 
-  <div class="py-10">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      @if (session('success'))
-      <div class="mb-4 p-4 rounded-lg bg-green-50 text-green-700 border border-green-200">
-        {{ session('success') }}
-      </div>
-      @endif
+  <div class="admin-crud-page compact-crud-page">
+    @if (session('success'))
+    <div class="admin-alert success">
+      {{ session('success') }}
+    </div>
+    @endif
 
-      @if (session('error'))
-      <div class="mb-4 p-4 rounded-lg bg-red-50 text-red-700 border border-red-200">
-        {{ session('error') }}
+    <div class="admin-table-card">
+      <div class="admin-table-head compact-table-head">
+        <div>
+          <h3>Daftar Kategori</h3>
+          <p>Kategori digunakan untuk mengelompokkan produk pada halaman koleksi.</p>
+        </div>
       </div>
-      @endif
 
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-        <table class="w-full text-sm">
-          <thead class="bg-gray-50 text-gray-600">
+      <div class="admin-table-wrapper">
+        <table class="admin-data-table">
+          <thead>
             <tr>
-              <th class="px-6 py-4 text-left">Nama</th>
-              <th class="px-6 py-4 text-left">Deskripsi</th>
-              <th class="px-6 py-4 text-left">Status</th>
-              <th class="px-6 py-4 text-right">Aksi</th>
+              <th>Nama</th>
+              <th>Deskripsi</th>
+              <th>Status</th>
+              <th class="text-right">Aksi</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-100">
+
+          <tbody>
             @forelse ($categories as $category)
             <tr>
-              <td class="px-6 py-4 font-medium text-gray-800">
-                {{ $category->name }}
+              <td>
+                <div class="admin-table-main-text">
+                  <strong>{{ $category->name }}</strong>
+                  <span>{{ $category->slug }}</span>
+                </div>
               </td>
-              <td class="px-6 py-4 text-gray-500">
-                {{ $category->description ?? '-' }}
+
+              <td>
+                {{ $category->description ?: '-' }}
               </td>
-              <td class="px-6 py-4">
+
+              <td>
                 @if ($category->is_active)
-                <span class="px-3 py-1 rounded-full bg-green-50 text-green-700 text-xs">Aktif</span>
+                <span class="admin-status active">Aktif</span>
                 @else
-                <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-xs">Nonaktif</span>
+                <span class="admin-status inactive">Nonaktif</span>
                 @endif
               </td>
-              <td class="px-6 py-4">
-                <div class="flex justify-end gap-2">
-                  <a href="{{ route('admin.categories.edit', $category) }}" class="px-3 py-2 rounded-lg bg-yellow-50 text-yellow-700 hover:bg-yellow-100">
+
+              <td>
+                <div class="admin-action-group">
+                  <a href="{{ route('admin.categories.edit', $category) }}" class="admin-action edit">
                     Edit
                   </a>
 
-                  <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" onsubmit="return confirm('Yakin hapus kategori ini?')">
+                  <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" onsubmit="return confirm('Hapus kategori ini?')">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="px-3 py-2 rounded-lg bg-red-50 text-red-700 hover:bg-red-100">
+
+                    <button type="submit" class="admin-action delete">
                       Hapus
                     </button>
                   </form>
@@ -69,17 +94,16 @@
             </tr>
             @empty
             <tr>
-              <td colspan="4" class="px-6 py-10 text-center text-gray-500">
-                Belum ada kategori.
+              <td colspan="4">
+                <div class="admin-empty-state">
+                  <strong>Belum ada kategori.</strong>
+                  <span>Tambahkan kategori pertama untuk mulai mengelompokkan produk.</span>
+                </div>
               </td>
             </tr>
             @endforelse
           </tbody>
         </table>
-      </div>
-
-      <div class="mt-6">
-        {{ $categories->links() }}
       </div>
     </div>
   </div>
