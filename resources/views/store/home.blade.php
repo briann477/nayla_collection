@@ -1,81 +1,156 @@
-@extends('layouts.store')
+@extends('layouts.store', ['title' => 'Home - N.A.Y.L.A'])
 
 @section('content')
-<section class="hero-section">
-  <div class="store-container hero-grid">
-    <div class="hero-copy">
-      <span class="eyebrow">Modest Fashion Collection</span>
-      <h1>N.A.Y.L.A</h1>
-      <p>
-        Koleksi busana wanita elegan dengan sentuhan clean, soft, dan timeless
-        untuk momen harian maupun acara spesial.
-      </p>
-
-      <div class="hero-actions">
-        <a href="{{ route('collection') }}" class="btn-primary-store">Lihat Koleksi</a>
-        <a href="{{ route('about') }}" class="btn-secondary-store">Tentang Brand</a>
-      </div>
-    </div>
-
-    <div class="hero-card">
-      <div class="hero-image-placeholder">
-        <span>Elegant Wear</span>
-      </div>
-      <div class="floating-card">
-        <strong>New Collection</strong>
-        <small>Soft • Elegant • Modest</small>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section-block">
+<section class="home-v2-hero">
   <div class="store-container">
-    <div class="section-heading">
-      <span>Featured</span>
-      <h2>Koleksi Pilihan</h2>
-      <p>Produk terbaru dari katalog N.A.Y.L.A.</p>
-    </div>
+    <div class="home-v2-grid">
+      <div class="home-v2-copy">
+        <span class="home-v2-eyebrow">Modest Fashion Collection</span>
 
-    <div class="product-grid">
-      @forelse ($featuredProducts as $product)
-      <div class="product-card">
-        @if ($product->image && \Illuminate\Support\Facades\Storage::disk('public')->exists($product->image))
-        <img
-          src="{{ asset('storage/' . $product->image) }}"
-          class="product-photo"
-          alt="{{ $product->name }}">
-        @else
-        <div class="product-image soft-cream product-placeholder">
-          <span>N.A.Y.L.A</span>
+        <h1>N.A.Y.L.A</h1>
+
+        <p class="home-v2-lead">
+          Koleksi busana wanita elegan dengan sentuhan clean, soft, dan timeless
+          untuk aktivitas harian maupun momen spesial.
+        </p>
+
+        <div class="home-v2-actions">
+          <a href="{{ route('collection') }}" class="btn-primary-store">Lihat Koleksi</a>
+          <a href="{{ route('about') }}" class="btn-secondary-store">Tentang Brand</a>
         </div>
-        @endif
 
-        <div class="product-info">
-          <small>{{ $product->category->name ?? 'Produk' }}</small>
-          <h3>{{ $product->name }}</h3>
-          <p>{{ Str::limit($product->description, 70) ?: 'Koleksi busana elegan N.A.Y.L.A.' }}</p>
-          <strong>{{ $product->formattedPrice() }}</strong>
-          <a href="{{ route('product.detail', $product->slug) }}" class="product-link">Detail Produk</a>
+        <div class="home-v2-points">
+          <div>
+            <strong>Soft</strong>
+            <span>Desain feminin dan clean</span>
+          </div>
+          <div>
+            <strong>Elegant</strong>
+            <span>Look simple tapi tetap classy</span>
+          </div>
+          <div>
+            <strong>Comfort</strong>
+            <span>Nyaman untuk dipakai harian</span>
+          </div>
         </div>
       </div>
-      @empty
-      <div class="empty-store">
-        <h3>Belum ada produk.</h3>
-        <p>Produk akan tampil setelah admin menambahkan katalog.</p>
+
+      <div class="home-v2-visual">
+        <div class="home-v2-visual-frame">
+          <div class="home-v2-floating-card top">
+            <span>New Collection</span>
+            <strong>Soft • Elegant • Modest</strong>
+          </div>
+
+          <div class="home-v2-visual-main">
+            <div class="home-v2-visual-main-inner">
+              <span class="small-label">N.A.Y.L.A</span>
+              <h3>Elegant Wear</h3>
+              <p>Clean silhouette for graceful moments.</p>
+            </div>
+          </div>
+
+          <div class="home-v2-floating-card bottom">
+            <strong>Ready for every moment</strong>
+            <span>Daily wear • special occasion • timeless style</span>
+          </div>
+        </div>
       </div>
-      @endforelse
     </div>
   </div>
 </section>
 
-<section class="promo-section">
-  <div class="store-container promo-box">
-    <div>
-      <span>Simple Shopping</span>
-      <h2>Belanja lebih mudah melalui website resmi N.A.Y.L.A.</h2>
+<section class="home-v2-features">
+  <div class="store-container">
+    <div class="home-v2-section-head center">
+      <span>Why Choose Us</span>
+      <h2>Simple, elegant, and made to feel effortless.</h2>
+      <p>
+        N.A.Y.L.A menghadirkan koleksi dengan tampilan clean dan nuansa feminin
+        untuk customer yang suka look rapi tapi tetap nyaman.
+      </p>
     </div>
-    <a href="{{ route('collection') }}" class="btn-primary-store">Mulai Belanja</a>
+
+    <div class="home-v2-feature-grid">
+      <div class="home-v2-feature-card">
+        <div class="home-v2-icon">01</div>
+        <h3>Elegant Style</h3>
+        <p>
+          Potongan busana yang simpel namun tetap terlihat manis dan berkelas.
+        </p>
+      </div>
+
+      <div class="home-v2-feature-card">
+        <div class="home-v2-icon">02</div>
+        <h3>Easy Shopping</h3>
+        <p>
+          Alur belanja mudah mulai dari koleksi, checkout, hingga tracking pesanan.
+        </p>
+      </div>
+
+      <div class="home-v2-feature-card">
+        <div class="home-v2-icon">03</div>
+        <h3>Flexible Payment</h3>
+        <p>
+          Tersedia pembayaran COD, transfer virtual account dummy, dan QRIS dummy.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-v2-categories">
+  <div class="store-container">
+    <div class="home-v2-section-head">
+      <span>Explore</span>
+      <h2>Koleksi Pilihan N.A.Y.L.A</h2>
+      <p>
+        Temukan busana dengan nuansa anggun, lembut, dan cocok untuk berbagai suasana.
+      </p>
+    </div>
+
+    <div class="home-v2-category-grid">
+      <a href="{{ route('collection') }}" class="home-v2-category-card">
+        <span>01</span>
+        <h3>Dress Collection</h3>
+        <p>Busana anggun untuk daily wear dan special occasion.</p>
+        <strong>Lihat Koleksi</strong>
+      </a>
+
+      <a href="{{ route('collection') }}" class="home-v2-category-card">
+        <span>02</span>
+        <h3>Soft Neutral Tone</h3>
+        <p>Palet warna lembut dengan kesan clean dan timeless.</p>
+        <strong>Lihat Koleksi</strong>
+      </a>
+
+      <a href="{{ route('collection') }}" class="home-v2-category-card">
+        <span>03</span>
+        <h3>Modest Elegant Look</h3>
+        <p>Gaya sopan yang tetap stylish dan nyaman digunakan.</p>
+        <strong>Lihat Koleksi</strong>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="home-v2-cta">
+  <div class="store-container">
+    <div class="home-v2-cta-box">
+      <div>
+        <span>Start Shopping</span>
+        <h2>Temukan koleksi yang cocok untuk gayamu.</h2>
+        <p>
+          Jelajahi koleksi N.A.Y.L.A dan nikmati pengalaman belanja yang simple,
+          clean, dan elegan.
+        </p>
+      </div>
+
+      <div class="home-v2-cta-actions">
+        <a href="{{ route('collection') }}" class="btn-primary-store">Belanja Sekarang</a>
+        <a href="{{ route('contact') }}" class="btn-secondary-store">Hubungi Kami</a>
+      </div>
+    </div>
   </div>
 </section>
 @endsection
