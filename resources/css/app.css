@@ -4208,3 +4208,351 @@ html {
         text-align: center;
     }
 }
+
+.detail-v2-section {
+    padding: 54px 0 70px;
+}
+
+.detail-v2-back {
+    display: inline-flex;
+    margin-bottom: 24px;
+    color: var(--nayla-muted);
+    text-decoration: none;
+    font-weight: 800;
+    transition: 0.2s ease;
+}
+
+.detail-v2-back:hover {
+    color: var(--nayla-dark);
+    transform: translateX(-3px);
+}
+
+.detail-v2-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 28px;
+    align-items: stretch;
+}
+
+.detail-v2-gallery,
+.detail-v2-info-card {
+    min-height: 620px;
+}
+
+.detail-v2-image-card {
+    position: sticky;
+    top: 112px;
+    height: 620px;
+    padding: 20px;
+    border-radius: 38px;
+    background:
+        radial-gradient(
+            circle at 20% 18%,
+            rgba(255, 255, 255, 0.9),
+            transparent 30%
+        ),
+        linear-gradient(145deg, #fffaf3, #eadfd3);
+    border: 1px solid var(--nayla-border);
+    box-shadow: 0 28px 70px rgba(95, 70, 56, 0.08);
+    overflow: hidden;
+}
+
+.detail-v2-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 28px;
+}
+
+.detail-v2-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.detail-v2-placeholder span {
+    color: rgba(47, 41, 38, 0.42);
+    font-family: "Playfair Display", serif;
+    font-size: 42px;
+    letter-spacing: 8px;
+}
+
+.detail-v2-image-badge {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid var(--nayla-border);
+    color: var(--nayla-brown);
+    font-size: 12px;
+    font-weight: 900;
+    box-shadow: 0 12px 28px rgba(95, 70, 56, 0.08);
+}
+
+.detail-v2-info-card {
+    align-self: start;
+    padding: 40px;
+    border-radius: 38px;
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid var(--nayla-border);
+    box-shadow: 0 28px 70px rgba(95, 70, 56, 0.08);
+}
+
+.detail-v2-category {
+    display: inline-flex;
+    margin-bottom: 16px;
+    color: var(--nayla-taupe);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.detail-v2-info-card h1 {
+    margin: 0;
+    color: var(--nayla-dark);
+    font-family: "Playfair Display", serif;
+    font-size: clamp(48px, 6vw, 76px);
+    line-height: 0.98;
+}
+
+.detail-v2-price {
+    margin-top: 22px;
+    color: var(--nayla-brown);
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.detail-v2-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.detail-v2-meta-grid div {
+    padding: 18px;
+    border-radius: 22px;
+    background: var(--nayla-ivory);
+    border: 1px solid var(--nayla-border);
+}
+
+.detail-v2-meta-grid span {
+    display: block;
+    color: var(--nayla-muted);
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.detail-v2-meta-grid strong {
+    color: var(--nayla-dark);
+    font-size: 17px;
+}
+
+.detail-v2-description {
+    margin-top: 30px;
+    padding-top: 26px;
+    border-top: 1px solid var(--nayla-border);
+}
+
+.detail-v2-description h3 {
+    margin: 0 0 12px;
+    color: var(--nayla-dark);
+    font-size: 23px;
+}
+
+.detail-v2-description p {
+    margin: 0;
+    color: var(--nayla-muted);
+    line-height: 1.9;
+    font-size: 16px;
+}
+
+.detail-v2-action-box {
+    margin-top: 30px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.detail-v2-cart-form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.detail-v2-qty {
+    display: grid;
+    gap: 8px;
+}
+
+.detail-v2-qty label {
+    color: var(--nayla-muted);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.detail-v2-qty input {
+    width: 92px;
+    border: 1px solid var(--nayla-border);
+    border-radius: 18px;
+    padding: 13px 14px;
+    background: var(--nayla-ivory);
+    color: var(--nayla-dark);
+}
+
+.detail-v2-main-btn,
+.detail-v2-secondary-btn {
+    min-height: 50px;
+}
+
+.detail-v2-note {
+    margin-top: 26px;
+    padding: 18px;
+    border-radius: 22px;
+    background: linear-gradient(145deg, #fffaf3, #f3eadf);
+    border: 1px solid var(--nayla-border);
+}
+
+.detail-v2-note strong {
+    display: block;
+    color: var(--nayla-dark);
+    margin-bottom: 8px;
+}
+
+.detail-v2-note span {
+    display: block;
+    color: var(--nayla-muted);
+    line-height: 1.75;
+    font-size: 14px;
+}
+
+.detail-v2-related {
+    padding: 26px 0 80px;
+}
+
+@media (max-width: 1050px) {
+    .detail-v2-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-v2-gallery,
+    .detail-v2-info-card {
+        min-height: auto;
+    }
+
+    .detail-v2-info-card {
+        position: relative;
+        top: auto;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .detail-v2-image-card {
+        position: relative;
+        top: auto;
+        height: 520px;
+    }
+}
+
+@media (max-width: 640px) {
+    .detail-v2-section {
+        padding: 36px 0 52px;
+    }
+
+    .detail-v2-image-card {
+        height: 420px;
+        padding: 14px;
+        border-radius: 28px;
+    }
+
+    .detail-v2-info-card {
+        padding: 26px;
+        border-radius: 28px;
+    }
+
+    .detail-v2-info-card h1 {
+        font-size: 46px;
+    }
+
+    .detail-v2-price {
+        font-size: 26px;
+    }
+
+    .detail-v2-meta-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-v2-cart-form,
+    .detail-v2-action-box {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .detail-v2-qty input,
+    .detail-v2-main-btn,
+    .detail-v2-secondary-btn {
+        width: 100%;
+    }
+}
+
+.detail-v2-section {
+    padding: 42px 0 62px;
+}
+
+.detail-v2-grid {
+    align-items: start;
+}
+
+.detail-v2-gallery,
+.detail-v2-info-card {
+    min-height: auto;
+}
+
+.detail-v2-image-card {
+    height: 560px;
+}
+
+.detail-v2-info-card h1 {
+    font-size: clamp(42px, 5vw, 64px);
+}
+
+.detail-v2-price {
+    margin-top: 18px;
+    font-size: 30px;
+}
+
+.detail-v2-meta-grid {
+    margin-top: 24px;
+}
+
+.detail-v2-description {
+    margin-top: 24px;
+    padding-top: 22px;
+}
+
+.detail-v2-description h3 {
+    font-size: 21px;
+}
+
+.detail-v2-description p {
+    line-height: 1.75;
+}
+
+.detail-v2-action-box {
+    margin-top: 24px;
+}
+
+.detail-v2-note {
+    display: none;
+}
