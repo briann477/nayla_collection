@@ -4556,3 +4556,332 @@ html {
 .detail-v2-note {
     display: none;
 }
+
+.admin-dashboard-title span,
+.admin-hero-eyebrow,
+.admin-panel-head span {
+    display: inline-flex;
+    color: #9b806f;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: 900;
+    margin-bottom: 8px;
+}
+
+.admin-dashboard-title h2 {
+    margin: 0;
+}
+
+.admin-dashboard-title p {
+    margin: 10px 0 0;
+    color: #7c716b;
+    font-size: 15px;
+}
+
+.admin-dashboard-page {
+    padding: 6px 0 64px;
+}
+
+.admin-dashboard-hero {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 24px;
+    align-items: stretch;
+    margin-bottom: 24px;
+}
+
+.admin-dashboard-hero > div:first-child,
+.admin-hero-card,
+.admin-stat-card,
+.admin-panel-card {
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid #eadfd3;
+    border-radius: 30px;
+    box-shadow: 0 22px 60px rgba(95, 70, 56, 0.07);
+}
+
+.admin-dashboard-hero > div:first-child {
+    padding: 34px;
+}
+
+.admin-dashboard-hero h1 {
+    margin: 0;
+    color: #2f2926;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(38px, 5vw, 62px);
+    line-height: 1.04;
+}
+
+.admin-dashboard-hero p {
+    margin: 14px 0 0;
+    max-width: 680px;
+    color: #7c716b;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.admin-hero-card {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 255, 255, 0.9),
+            transparent 30%
+        ),
+        linear-gradient(145deg, #fffaf3, #eadfd3);
+}
+
+.admin-hero-card span {
+    color: #7c716b;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.admin-hero-card strong {
+    display: block;
+    margin-top: 10px;
+    color: #2f2926;
+    font-family: "Playfair Display", serif;
+    font-size: 34px;
+    line-height: 1.1;
+}
+
+.admin-hero-card small {
+    display: block;
+    margin-top: 12px;
+    color: #9b806f;
+    line-height: 1.6;
+}
+
+.admin-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.admin-stat-card {
+    padding: 24px;
+    transition: 0.2s ease;
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 26px 70px rgba(95, 70, 56, 0.1);
+}
+
+.admin-stat-card span {
+    display: block;
+    color: #7c716b;
+    font-weight: 800;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.admin-stat-card strong {
+    display: block;
+    color: #2f2926;
+    font-size: 36px;
+    line-height: 1;
+}
+
+.admin-stat-card p {
+    margin: 12px 0 0;
+    color: #9b806f;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.admin-dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 0.85fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.admin-panel-card {
+    padding: 28px;
+}
+
+.admin-panel-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.admin-panel-head h3 {
+    margin: 0;
+    color: #2f2926;
+    font-size: 26px;
+    font-family: "Playfair Display", serif;
+}
+
+.admin-panel-head p {
+    margin: 0;
+    color: #7c716b;
+    line-height: 1.6;
+    max-width: 260px;
+    text-align: right;
+}
+
+.admin-panel-head a {
+    text-decoration: none;
+    color: #5f4638;
+    font-weight: 900;
+}
+
+.admin-shortcut-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.admin-shortcut-card {
+    display: block;
+    text-decoration: none;
+    padding: 22px;
+    border-radius: 22px;
+    background: #fffaf3;
+    border: 1px solid #eadfd3;
+    transition: 0.2s ease;
+}
+
+.admin-shortcut-card:hover {
+    transform: translateY(-4px);
+    background: #ffffff;
+    box-shadow: 0 18px 40px rgba(95, 70, 56, 0.08);
+}
+
+.admin-shortcut-card span {
+    display: inline-flex;
+    width: 42px;
+    height: 42px;
+    border-radius: 16px;
+    align-items: center;
+    justify-content: center;
+    background: #2f2926;
+    color: #ffffff;
+    font-weight: 900;
+    margin-bottom: 14px;
+}
+
+.admin-shortcut-card h4 {
+    margin: 0;
+    color: #2f2926;
+    font-size: 18px;
+}
+
+.admin-shortcut-card p {
+    margin: 8px 0 0;
+    color: #7c716b;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.admin-latest-orders {
+    display: grid;
+    gap: 12px;
+}
+
+.admin-latest-order {
+    text-decoration: none;
+    padding: 16px;
+    border-radius: 20px;
+    background: #fffaf3;
+    border: 1px solid #eadfd3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    transition: 0.2s ease;
+}
+
+.admin-latest-order:hover {
+    background: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 16px 34px rgba(95, 70, 56, 0.08);
+}
+
+.admin-latest-order strong {
+    display: block;
+    color: #2f2926;
+    font-size: 14px;
+}
+
+.admin-latest-order span {
+    display: block;
+    margin-top: 5px;
+    color: #7c716b;
+    font-size: 13px;
+}
+
+.admin-latest-order > div:last-child {
+    text-align: right;
+}
+
+.admin-empty-mini {
+    padding: 28px;
+    border-radius: 22px;
+    background: #fffaf3;
+    border: 1px dashed #d9c9bc;
+    text-align: center;
+}
+
+.admin-empty-mini strong {
+    display: block;
+    color: #2f2926;
+}
+
+.admin-empty-mini span {
+    display: block;
+    margin-top: 8px;
+    color: #7c716b;
+}
+
+@media (max-width: 1050px) {
+    .admin-dashboard-hero,
+    .admin-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-stat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-panel-head p {
+        text-align: left;
+    }
+}
+
+@media (max-width: 620px) {
+    .admin-dashboard-hero > div:first-child,
+    .admin-hero-card,
+    .admin-panel-card {
+        padding: 22px;
+        border-radius: 24px;
+    }
+
+    .admin-stat-grid,
+    .admin-shortcut-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-panel-head {
+        flex-direction: column;
+    }
+
+    .admin-latest-order {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .admin-latest-order > div:last-child {
+        text-align: left;
+    }
+}
