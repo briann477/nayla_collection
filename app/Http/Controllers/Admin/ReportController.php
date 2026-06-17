@@ -14,57 +14,70 @@ class ReportController extends Controller
         $startDate = $request->start_date;
         $endDate = $request->end_date;
 
-        $ordersQuery = Order::with('user')
-            ->latest();
+        $ordersQuery = Order::with(['items.product'])->latest();
 
-        if ($startDate) {
-            $ordersQuery->whereDate('created_at', '>=', $startDate);
+        if ($startDate && $endDate) {
+            $ordersQuery->whereDate('created_at', '>=', $startDate)
+                ->whereDate('created_at', '<=', $endDate);
         }
 
-        if ($endDate) {
-            $ordersQuery->whereDate('created_at', '<=', $endDate);
-        }
+        $orders = $ordersQuery->get();
 
-        $orders = $ordersQuery->paginate(10)->withQueryString();
+        $totalOrders = $orders->count();
 
-        $summaryQuery = Order::query();
-
-        if ($startDate) {
-            $summaryQuery->whereDate('created_at', '>=', $startDate);
-        }
-
-        if ($endDate) {
-            $summaryQuery->whereDate('created_at', '<=', $endDate);
-        }
-
-        $totalOrders = (clone $summaryQuery)->count();
-
-        $completedOrders = (clone $summaryQuery)
-            ->where('order_status', 'completed')
-            ->count();
-
-        $pendingOrders = (clone $summaryQuery)
-            ->whereIn('order_status', ['pending', 'processing', 'shipped'])
-            ->count();
-
-        $cancelledOrders = (clone $summaryQuery)
-            ->where('order_status', 'cancelled')
-            ->count();
-
-        $totalRevenue = (clone $summaryQuery)
+        $totalRevenue = $orders
             ->where('payment_status', 'paid')
             ->where('order_status', '!=', 'cancelled')
             ->sum('total');
 
+        $completedOrders = $orders
+            ->where('order_status', 'completed')
+            ->count();
+
+        $pendingOrders = $orders
+            ->whereIn('order_status', ['pending', 'processing', 'shipped'])
+            ->count();
+
+        $cancelledOrders = $orders
+            ->where('order_status', 'cancelled')
+            ->count();
+
+        $totalItemsSold = $orders
+            ->where('payment_status', 'paid')
+            ->where('order_status', '!=', 'cancelled')
+            ->flatMap(function ($order) {
+                return $order->items;
+            })
+            ->sum('quantity');
+
+        $topProducts = $orders
+            ->where('payment_status', 'paid')
+            ->where('order_status', '!=', 'cancelled')
+            ->flatMap(function ($order) {
+                return $order->items;
+            })
+            ->groupBy('product_name')
+            ->map(function ($items, $productName) {
+                return [
+                    'name' => $productName,
+                    'quantity' => $items->sum('quantity'),
+                    'subtotal' => $items->sum('subtotal'),
+                ];
+            })
+            ->sortByDesc('quantity')
+            ->take(5);
+
         return view('admin.reports.index', compact(
             'orders',
+            'startDate',
+            'endDate',
             'totalOrders',
+            'totalRevenue',
             'completedOrders',
             'pendingOrders',
             'cancelledOrders',
-            'totalRevenue',
-            'startDate',
-            'endDate'
+            'totalItemsSold',
+            'topProducts'
         ));
     }
 }
