@@ -25,10 +25,16 @@
   <div class="store-container">
     <div class="collection-v2-toolbar">
       <div class="category-filter collection-v2-filter">
-        <span>Semua Kategori</span>
+        <a href="{{ url('/koleksi') }}" class="{{ request('category') ? '' : 'active' }}">
+          Semua Kategori
+        </a>
 
         @foreach ($categories as $category)
-        <span>{{ $category->name }}</span>
+        <a
+          href="{{ url('/koleksi?category=' . $category->slug) }}"
+          class="{{ request('category') === $category->slug ? 'active' : '' }}">
+          {{ $category->name }}
+        </a>
         @endforeach
       </div>
 
@@ -59,14 +65,14 @@
 
         <div class="collection-v2-info">
           <div class="collection-v2-meta">
-            <span>{{ $product->category->name ?? 'Produk' }}</span>
+            <span>{{ strtoupper($product->category->name ?? 'Produk') }}</span>
             <small>Stok {{ $product->stock }}</small>
           </div>
 
           <h3>{{ $product->name }}</h3>
 
           <p>
-            {{ Str::limit($product->description, 90) ?: 'Koleksi busana elegan N.A.Y.L.A.' }}
+            {{ \Illuminate\Support\Str::limit($product->description ?: 'Koleksi busana elegan N.A.Y.L.A.', 105) }}
           </p>
 
           <div class="collection-v2-bottom">

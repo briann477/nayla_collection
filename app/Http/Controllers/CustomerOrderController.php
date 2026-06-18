@@ -10,7 +10,8 @@ class CustomerOrderController extends Controller
 {
     public function index(): View
     {
-        $orders = Order::where('user_id', auth()->id())
+        $orders = Order::with(['items.product'])
+            ->where('user_id', auth()->id())
             ->latest()
             ->paginate(10);
 
@@ -23,7 +24,7 @@ class CustomerOrderController extends Controller
             abort(403);
         }
 
-        $order->load('items.product');
+        $order->load(['items.product']);
 
         return view('store.orders.show', compact('order'));
     }

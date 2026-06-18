@@ -48,7 +48,7 @@
 
             <div>
               <span>Tanggal Pesanan</span>
-              <strong>{{ $order->created_at->format('d M Y H:i') }}</strong>
+              <strong>{{ $order->created_at->timezone('Asia/Jakarta')->format('d M Y H:i') }} WIB</strong>
             </div>
 
             <div class="wide">

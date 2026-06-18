@@ -73,7 +73,6 @@
 
                   <div class="admin-table-main-text">
                     <strong>{{ $product->name }}</strong>
-                    <span>{{ $product->slug }}</span>
                   </div>
                 </div>
               </td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class StoreController extends Controller
@@ -19,16 +20,29 @@ class StoreController extends Controller
         return view('store.home', compact('featuredProducts'));
     }
 
-    public function collection(): View
+    public function collection(Request $request): View
     {
         $categories = Category::where('is_active', true)
             ->orderBy('name')
             ->get();
 
-        $products = Product::with('category')
-            ->where('is_active', true)
+        $productsQuery = Product::with('category')
+            ->where('is_active', true);
+
+        if ($request->filled('category')) {
+            $selectedCategory = Category::where('slug', $request->category)
+                ->where('is_active', true)
+                ->first();
+
+            if ($selectedCategory) {
+                $productsQuery->where('category_id', $selectedCategory->id);
+            }
+        }
+
+        $products = $productsQuery
             ->latest()
-            ->paginate(8);
+            ->paginate(8)
+            ->withQueryString();
 
         return view('store.collection', compact('products', 'categories'));
     }
