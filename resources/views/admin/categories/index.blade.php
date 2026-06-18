@@ -59,10 +59,7 @@
               <td>
                 <div class="admin-table-main-text">
                   <strong>{{ $category->name }}</strong>
-                  <span>{{ $category->slug }}</span>
                 </div>
-              </td>
-
               <td>
                 {{ $category->description ?: '-' }}
               </td>
