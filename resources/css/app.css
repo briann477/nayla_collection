@@ -6711,3 +6711,226 @@ html {
         overflow: visible !important;
     }
 }
+
+.admin-product-cell {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.admin-product-thumb,
+.admin-product-thumb-placeholder {
+    width: 58px;
+    height: 70px;
+    border-radius: 14px;
+    flex: 0 0 auto;
+    border: 1px solid #eadfd3;
+    background: #f3eadf;
+}
+
+.admin-product-thumb {
+    object-fit: cover;
+    display: block;
+}
+
+.admin-product-thumb-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9b806f;
+    font-family: "Playfair Display", serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.admin-product-table td {
+    vertical-align: middle;
+}
+
+.admin-price-text {
+    color: #2f2926;
+    font-weight: 900;
+}
+
+@media (max-width: 760px) {
+    .admin-product-cell {
+        align-items: flex-start;
+    }
+
+    .admin-product-thumb,
+    .admin-product-thumb-placeholder {
+        width: 52px;
+        height: 64px;
+    }
+}
+
+.admin-form-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 22px;
+    align-items: start;
+}
+
+.admin-form-card {
+    overflow: hidden;
+}
+
+.admin-form {
+    padding: 24px;
+}
+
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.admin-form-group {
+    display: grid;
+    gap: 8px;
+}
+
+.admin-form-group.full {
+    grid-column: 1 / -1;
+}
+
+.admin-form-group label {
+    color: #2f2926;
+    font-weight: 900;
+    font-size: 14px;
+}
+
+.admin-form-group input,
+.admin-form-group select,
+.admin-form-group textarea {
+    width: 100%;
+    border: 1px solid #eadfd3;
+    border-radius: 18px;
+    padding: 14px 16px;
+    background: #fffaf3;
+    color: #2f2926;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.admin-form-group textarea {
+    resize: vertical;
+    min-height: 130px;
+}
+
+.admin-form-group input:focus,
+.admin-form-group select:focus,
+.admin-form-group textarea:focus {
+    border-color: #9b806f;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(155, 128, 111, 0.12);
+}
+
+.admin-form-error {
+    color: #b42318;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.admin-form-actions {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #eadfd3;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.admin-cancel-btn,
+.admin-submit-btn {
+    border: 0;
+    text-decoration: none;
+    padding: 14px 20px;
+    border-radius: 999px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.admin-cancel-btn {
+    background: #fffaf3;
+    color: #5f4638;
+    border: 1px solid #eadfd3;
+}
+
+.admin-submit-btn {
+    background: #2f2926;
+    color: #ffffff;
+}
+
+.admin-cancel-btn:hover,
+.admin-submit-btn:hover {
+    transform: translateY(-2px);
+}
+
+.admin-submit-btn:hover {
+    background: #5f4638;
+}
+
+.admin-form-help {
+    overflow: hidden;
+    position: sticky;
+    top: 112px;
+}
+
+.admin-help-list {
+    display: grid;
+    gap: 12px;
+    padding: 20px;
+}
+
+.admin-help-list div {
+    padding: 16px;
+    border-radius: 18px;
+    background: #fffaf3;
+    border: 1px solid #eadfd3;
+}
+
+.admin-help-list strong {
+    display: block;
+    color: #2f2926;
+    margin-bottom: 6px;
+}
+
+.admin-help-list span {
+    display: block;
+    color: #7c716b;
+    line-height: 1.55;
+    font-size: 14px;
+}
+
+@media (max-width: 1050px) {
+    .admin-form-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-form-help {
+        position: relative;
+        top: auto;
+    }
+}
+
+@media (max-width: 680px) {
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-form {
+        padding: 18px;
+    }
+
+    .admin-form-actions {
+        flex-direction: column;
+    }
+
+    .admin-cancel-btn,
+    .admin-submit-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

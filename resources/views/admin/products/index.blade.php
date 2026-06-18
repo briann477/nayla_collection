@@ -1,79 +1,116 @@
 <x-app-layout>
   <x-slot name="header">
-    <div class="flex items-center justify-between">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Kelola Produk
-      </h2>
+    <div class="admin-page-title-row category-title-compact">
+      <div>
+        <span class="admin-page-eyebrow">Product Management</span>
+        <h2>Kelola Produk</h2>
+        <p>Atur data produk fashion yang tampil pada katalog N.A.Y.L.A.</p>
+      </div>
 
-      <a href="{{ route('admin.products.create') }}" class="px-4 py-2 bg-gray-900 text-white rounded-lg text-sm hover:bg-gray-700">
-        Tambah Produk
-      </a>
+      <div class="admin-title-side">
+        <a href="{{ route('admin.products.create') }}" class="admin-primary-btn">
+          Tambah Produk
+        </a>
+
+        <div class="admin-inline-stats">
+          <div>
+            <span>Total</span>
+            <strong>{{ $products->count() }}</strong>
+          </div>
+
+          <div>
+            <span>Aktif</span>
+            <strong>{{ $products->where('is_active', true)->count() }}</strong>
+          </div>
+        </div>
+      </div>
     </div>
   </x-slot>
 
-  <div class="py-10">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      @if (session('success'))
-      <div class="mb-4 p-4 rounded-lg bg-green-50 text-green-700 border border-green-200">
-        {{ session('success') }}
-      </div>
-      @endif
+  <div class="admin-crud-page compact-crud-page">
+    @if (session('success'))
+    <div class="admin-alert success">
+      {{ session('success') }}
+    </div>
+    @endif
 
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-        <table class="w-full text-sm">
-          <thead class="bg-gray-50 text-gray-600">
+    <div class="admin-table-card">
+      <div class="admin-table-head compact-table-head">
+        <div>
+          <h3>Daftar Produk</h3>
+          <p>Produk yang ditampilkan pada halaman koleksi pelanggan.</p>
+        </div>
+      </div>
+
+      <div class="admin-table-wrapper">
+        <table class="admin-data-table admin-product-table">
+          <thead>
             <tr>
-              <th class="px-6 py-4 text-left">Produk</th>
-              <th class="px-6 py-4 text-left">Kategori</th>
-              <th class="px-6 py-4 text-left">Harga</th>
-              <th class="px-6 py-4 text-left">Stok</th>
-              <th class="px-6 py-4 text-left">Status</th>
-              <th class="px-6 py-4 text-right">Aksi</th>
+              <th>Produk</th>
+              <th>Kategori</th>
+              <th>Harga</th>
+              <th>Stok</th>
+              <th>Status</th>
+              <th class="text-right">Aksi</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-100">
+
+          <tbody>
             @forelse ($products as $product)
             <tr>
-              <td class="px-6 py-4">
-                <div class="flex items-center gap-3">
-                  @if ($product->image)
-                  <img src="{{ asset('storage/' . $product->image) }}" class="w-14 h-14 rounded-lg object-cover" alt="{{ $product->name }}">
+              <td>
+                <div class="admin-product-cell">
+                  @if ($product->image && \Illuminate\Support\Facades\Storage::disk('public')->exists($product->image))
+                  <img
+                    src="{{ asset('storage/' . $product->image) }}"
+                    alt="{{ $product->name }}"
+                    class="admin-product-thumb">
                   @else
-                  <div class="w-14 h-14 rounded-lg bg-gray-100"></div>
+                  <div class="admin-product-thumb-placeholder">
+                    N
+                  </div>
                   @endif
 
-                  <div>
-                    <p class="font-medium text-gray-800">{{ $product->name }}</p>
-                    <p class="text-xs text-gray-500">{{ $product->slug }}</p>
+                  <div class="admin-table-main-text">
+                    <strong>{{ $product->name }}</strong>
+                    <span>{{ $product->slug }}</span>
                   </div>
                 </div>
               </td>
-              <td class="px-6 py-4 text-gray-600">
+
+              <td>
                 {{ $product->category->name ?? '-' }}
               </td>
-              <td class="px-6 py-4 text-gray-800">
-                {{ $product->formattedPrice() }}
+
+              <td>
+                <strong class="admin-price-text">
+                  {{ $product->formattedPrice() }}
+                </strong>
               </td>
-              <td class="px-6 py-4 text-gray-600">
+
+              <td>
                 {{ $product->stock }}
               </td>
-              <td class="px-6 py-4">
+
+              <td>
                 @if ($product->is_active)
-                <span class="px-3 py-1 rounded-full bg-green-50 text-green-700 text-xs">Aktif</span>
+                <span class="admin-status active">Aktif</span>
                 @else
-                <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-xs">Nonaktif</span>
+                <span class="admin-status inactive">Nonaktif</span>
                 @endif
               </td>
-              <td class="px-6 py-4">
-                <div class="flex justify-end gap-2">
-                  <a href="{{ route('admin.products.edit', $product) }}" class="px-3 py-2 rounded-lg bg-yellow-50 text-yellow-700 hover:bg-yellow-100">
+
+              <td>
+                <div class="admin-action-group">
+                  <a href="{{ route('admin.products.edit', $product) }}" class="admin-action edit">
                     Edit
                   </a>
 
-                  <form action="{{ route('admin.products.destroy', $product) }}" method="POST" onsubmit="return confirm('Yakin hapus produk ini?')">
+                  <form action="{{ route('admin.products.destroy', $product) }}" method="POST" onsubmit="return confirm('Hapus produk ini?')">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="px-3 py-2 rounded-lg bg-red-50 text-red-700 hover:bg-red-100">
+
+                    <button type="submit" class="admin-action delete">
                       Hapus
                     </button>
                   </form>
@@ -82,17 +119,16 @@
             </tr>
             @empty
             <tr>
-              <td colspan="6" class="px-6 py-10 text-center text-gray-500">
-                Belum ada produk.
+              <td colspan="6">
+                <div class="admin-empty-state">
+                  <strong>Belum ada produk.</strong>
+                  <span>Tambahkan produk pertama untuk mulai menampilkan katalog N.A.Y.L.A.</span>
+                </div>
               </td>
             </tr>
             @endforelse
           </tbody>
         </table>
-      </div>
-
-      <div class="mt-6">
-        {{ $products->links() }}
       </div>
     </div>
   </div>

@@ -1,88 +1,168 @@
 <x-app-layout>
   <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      Tambah Produk
-    </h2>
+    <div class="admin-page-title-row category-title-compact">
+      <div>
+        <span class="admin-page-eyebrow">Product Management</span>
+        <h2>Tambah Produk</h2>
+        <p>Tambahkan produk fashion baru ke katalog N.A.Y.L.A.</p>
+      </div>
+
+      <a href="{{ route('admin.products.index') }}" class="admin-primary-btn admin-secondary-dark">
+        Kembali
+      </a>
+    </div>
   </x-slot>
 
-  <div class="py-10">
-    <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-        <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="space-y-5">
+  <div class="admin-crud-page compact-crud-page">
+    <div class="admin-form-layout">
+      <div class="admin-table-card admin-form-card">
+        <div class="admin-table-head compact-table-head">
+          <div>
+            <h3>Data Produk</h3>
+            <p>Isi informasi produk dengan lengkap agar tampil rapi pada halaman koleksi.</p>
+          </div>
+        </div>
+
+        <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="admin-form">
           @csrf
 
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
-            <select name="category_id" class="w-full rounded-lg border-gray-300 focus:border-gray-900 focus:ring-gray-900" required>
-              <option value="">Pilih Kategori</option>
-              @foreach ($categories as $category)
-              <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
-                {{ $category->name }}
-              </option>
-              @endforeach
-            </select>
-            @error('category_id')
-            <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-            @enderror
-          </div>
+          <div class="admin-form-grid">
+            <div class="admin-form-group">
+              <label for="name">Nama Produk</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value="{{ old('name') }}"
+                placeholder="Contoh: Dress Elegant"
+                required>
+              @error('name')
+              <small class="admin-form-error">{{ $message }}</small>
+              @enderror
+            </div>
 
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Nama Produk</label>
-            <input type="text" name="name" value="{{ old('name') }}" class="w-full rounded-lg border-gray-300 focus:border-gray-900 focus:ring-gray-900" required>
-            @error('name')
-            <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-            @enderror
-          </div>
+            <div class="admin-form-group">
+              <label for="category_id">Kategori</label>
+              <select id="category_id" name="category_id" required>
+                <option value="">Pilih kategori</option>
+                @foreach ($categories as $category)
+                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                  {{ $category->name }}
+                </option>
+                @endforeach
+              </select>
+              @error('category_id')
+              <small class="admin-form-error">{{ $message }}</small>
+              @enderror
+            </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Harga</label>
-              <input type="number" name="price" value="{{ old('price') }}" min="0" class="w-full rounded-lg border-gray-300 focus:border-gray-900 focus:ring-gray-900" required>
+            <div class="admin-form-group">
+              <label for="price">Harga</label>
+              <input
+                type="number"
+                id="price"
+                name="price"
+                value="{{ old('price') }}"
+                placeholder="Contoh: 150000"
+                min="0"
+                required>
               @error('price')
-              <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+              <small class="admin-form-error">{{ $message }}</small>
               @enderror
             </div>
 
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Stok</label>
-              <input type="number" name="stock" value="{{ old('stock', 0) }}" min="0" class="w-full rounded-lg border-gray-300 focus:border-gray-900 focus:ring-gray-900" required>
+            <div class="admin-form-group">
+              <label for="stock">Stok</label>
+              <input
+                type="number"
+                id="stock"
+                name="stock"
+                value="{{ old('stock') }}"
+                placeholder="Contoh: 10"
+                min="0"
+                required>
               @error('stock')
-              <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+              <small class="admin-form-error">{{ $message }}</small>
+              @enderror
+            </div>
+
+            <div class="admin-form-group">
+              <label for="is_active">Status Produk</label>
+              <select id="is_active" name="is_active" required>
+                <option value="1" {{ old('is_active', '1') == '1' ? 'selected' : '' }}>Aktif</option>
+                <option value="0" {{ old('is_active') == '0' ? 'selected' : '' }}>Nonaktif</option>
+              </select>
+              @error('is_active')
+              <small class="admin-form-error">{{ $message }}</small>
+              @enderror
+            </div>
+
+            <div class="admin-form-group">
+              <label for="image">Gambar Produk</label>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*">
+              @error('image')
+              <small class="admin-form-error">{{ $message }}</small>
+              @enderror
+            </div>
+
+            <div class="admin-form-group full">
+              <label for="description">Deskripsi Produk</label>
+              <textarea
+                id="description"
+                name="description"
+                rows="5"
+                placeholder="Tulis deskripsi singkat produk...">{{ old('description') }}</textarea>
+              @error('description')
+              <small class="admin-form-error">{{ $message }}</small>
               @enderror
             </div>
           </div>
 
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Deskripsi</label>
-            <textarea name="description" rows="5" class="w-full rounded-lg border-gray-300 focus:border-gray-900 focus:ring-gray-900">{{ old('description') }}</textarea>
-            @error('description')
-            <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-            @enderror
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Foto Produk</label>
-            <input type="file" name="image" class="w-full rounded-lg border border-gray-300 p-3">
-            <p class="text-xs text-gray-500 mt-1">Format: JPG, JPEG, PNG, WEBP. Maksimal 2MB.</p>
-            @error('image')
-            <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-            @enderror
-          </div>
-
-          <label class="flex items-center gap-2">
-            <input type="checkbox" name="is_active" value="1" class="rounded border-gray-300 text-gray-900 focus:ring-gray-900" checked>
-            <span class="text-sm text-gray-700">Aktif</span>
-          </label>
-
-          <div class="flex justify-end gap-3">
-            <a href="{{ route('admin.products.index') }}" class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">
+          <div class="admin-form-actions">
+            <a href="{{ route('admin.products.index') }}" class="admin-cancel-btn">
               Batal
             </a>
-            <button type="submit" class="px-4 py-2 rounded-lg bg-gray-900 text-white hover:bg-gray-700">
-              Simpan
+
+            <button type="submit" class="admin-submit-btn">
+              Simpan Produk
             </button>
           </div>
         </form>
+      </div>
+
+      <div class="admin-table-card admin-form-help">
+        <div class="admin-table-head compact-table-head">
+          <div>
+            <h3>Catatan</h3>
+            <p>Panduan singkat pengisian produk.</p>
+          </div>
+        </div>
+
+        <div class="admin-help-list">
+          <div>
+            <strong>Nama produk</strong>
+            <span>Gunakan nama singkat dan jelas agar mudah dibaca customer.</span>
+          </div>
+
+          <div>
+            <strong>Harga</strong>
+            <span>Isi angka tanpa titik atau simbol rupiah. Contoh: 150000.</span>
+          </div>
+
+          <div>
+            <strong>Gambar</strong>
+            <span>Gunakan foto produk yang jelas dan tidak terlalu gelap.</span>
+          </div>
+
+          <div>
+            <strong>Status</strong>
+            <span>Produk aktif akan tampil pada katalog customer.</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
